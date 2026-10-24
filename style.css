@@ -1,0 +1,189 @@
+/* SHARED UNIVERSES — Assignment 7 / desktop skeleton only.
+   All placement uses Grid or Flexbox. No manual positioning.
+   Purple: TJ / Green: Linh / Orange: Leah.
+   All bars and panels are EMPTY placeholders, not final artwork. */
+
+* { box-sizing: border-box; }
+
+:root {
+  --background: #10131b;
+  --panel: #181e29;
+  --line: #394150;
+  --muted: #505b70;
+  --accent: #bdabf5;
+  --tint: #302b45;
+}
+
+body {
+  margin: 0;
+  min-width: 1024px;
+  background: var(--background);
+  color: #f0eee9;
+  font-family: Arial, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 3px solid #ffffff; outline-offset: 6px; }
+.tj { --accent: #bdabf5; --tint: #302b45; }
+.linh { --accent: #cfdf9b; --tint: #30392c; }
+.leah { --accent: #efa77f; --tint: #423027; }
+
+/* Fixed outer grid: 12 columns, 24px gaps, automatic content rows. */
+.page {
+  width: calc(100% - 96px);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Fixed header: logo / exhibition title / three universe links. */
+.site-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 80px;
+  border-block-end: 1px solid var(--line);
+  padding-block-end: 24px;
+}
+.brand { display: flex; align-items: center; gap: 18px; padding: 8px; }
+.brand-mark { width: 28px; height: 28px; border: 2px solid #ebe9e2; border-radius: 50%; }
+.bar { display: block; height: 10px; width: 100%; background: var(--muted); border-radius: 2px; }
+.brand-bar { width: 140px; height: 12px; background: #e8e5dd; }
+.universe-nav { display: flex; align-items: center; gap: 12px; }
+.nav-dot {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.nav-dot span { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+.nav-dot:hover, .nav-dot[aria-current="page"] { border-color: var(--accent); background: var(--tint); }
+
+/* Home: title/statement panel spans 8 columns; index panel spans 4. */
+.entrance {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px;
+}
+.cover {
+  grid-column: span 8;
+  min-height: 244px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+.eyebrow { width: 74px; height: 7px; background: var(--accent); }
+.title-lines { display: grid; gap: 14px; }
+.title-lines .bar { height: 27px; width: 82%; background: #d8d9df; }
+.title-lines .bar:last-child { width: 56%; }
+.statement-lines { display: grid; gap: 9px; max-width: 420px; }
+.statement-lines .bar:last-child { width: 72%; }
+.cover-index {
+  grid-column: span 4;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 14px 24px;
+}
+.index-row { display: flex; align-items: center; gap: 18px; }
+.index-row + .index-row { border-block-start: 1px solid var(--line); }
+.index-row .bar { width: 60%; height: 8px; }
+.small-orb { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); }
+
+/* Three equal cards: each uses 4 of the 12 homepage columns. */
+.universe-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.universe-card {
+  display: grid;
+  grid-template-rows: 280px auto;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+.universe-card:hover { border-color: var(--accent); }
+.portal {
+  display: grid;
+  place-items: center;
+  background: var(--tint);
+  border-block-end: 1px solid var(--line);
+}
+/* Nested grids center the planet-shaped EMPTY artwork placeholder. */
+.orbit { width: 216px; height: 216px; border: 1px solid var(--accent); border-radius: 50%; display: grid; place-items: center; }
+.inner-orbit { width: 168px; height: 168px; border: 1px dashed var(--accent); border-radius: 50%; display: grid; place-items: center; }
+.planet { width: 112px; height: 112px; border-radius: 50%; background: var(--accent); }
+.card-caption { padding: 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.caption-lines { display: grid; gap: 12px; width: 65%; }
+.caption-lines .bar:first-child { background: var(--accent); height: 12px; }
+.caption-lines .bar:last-child { width: 60%; height: 7px; }
+
+/* Artwork template: fixed header and 5 / 5 / 2 column structure.
+   Free areas: inside original-work and css-work; accent colors.
+   Keep label placement and navigation consistent across all 3 pages. */
+.universe-heading {
+  grid-column: 1 / -1;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 32px;
+  border: 1px solid var(--line);
+  background: var(--tint);
+}
+.heading-lines { width: 58%; display: grid; gap: 18px; }
+.heading-lines .bar:first-child { width: 24%; height: 7px; background: var(--accent); }
+.heading-lines .bar:last-child { height: 30px; background: var(--accent); }
+.heading-orb { width: 64px; height: 64px; border: 1px solid var(--accent); border-radius: 50%; display: grid; place-items: center; }
+.heading-orb span { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); }
+.artwork-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 5fr) minmax(160px, 2fr);
+  gap: 24px;
+}
+.work-panel { border: 1px solid var(--line); background: var(--panel); display: grid; grid-template-rows: auto 1fr; min-height: 410px; }
+.panel-heading { padding: 20px; border-block-end: 1px solid var(--line); }
+.panel-heading .bar { width: 86px; height: 8px; }
+.css-work .panel-heading .bar { background: var(--accent); }
+.work-area { display: grid; place-items: center; padding: 28px; }
+.work-placeholder { width: 100%; aspect-ratio: 1; max-width: 310px; border: 1px dashed #677285; background: #252d3c; }
+.css-work .work-placeholder { border-color: var(--accent); background: var(--tint); }
+.wall-label { border: 1px solid var(--line); background: var(--panel); padding: 24px 18px; display: flex; flex-direction: column; gap: 28px; }
+.label-field { display: grid; gap: 10px; }
+.label-field .bar:first-child { height: 5px; width: 45%; }
+.label-field .bar:last-child { height: 10px; width: 90%; background: #a7aebc; }
+.label-field:first-child .bar:last-child { background: var(--accent); }
+.student-statement { grid-column: 1 / -1; display: grid; grid-template-columns: 2fr 5fr 5fr; gap: 24px; padding: 24px; border: 1px solid var(--line); background: var(--panel); }
+.student-statement > .bar { width: 70%; background: var(--accent); }
+.paragraph-lines { display: grid; gap: 10px; }
+.paragraph-lines .bar { height: 7px; }
+.paragraph-lines .bar:last-child { width: 65%; }
+
+/* Fixed navigation row, using Flexbox. Icons contain no visible text. */
+.site-footer { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block-start: 20px; border-block-start: 1px solid var(--line); }
+.footer-bars { width: 150px; display: grid; gap: 9px; }
+.footer-bars .bar { height: 5px; }
+.footer-bars .bar:last-child { width: 60%; }
+.page-navigation { display: flex; gap: 12px; }
+.icon-button { width: 48px; height: 48px; border: 1px solid var(--line); display: grid; place-items: center; }
+.icon-button:hover { border-color: var(--accent); background: var(--tint); }
+.arrow { display: block; width: 12px; height: 12px; border-block-start: 2px solid currentColor; border-inline-end: 2px solid currentColor; transform: rotate(45deg); }
+.arrow-back { transform: rotate(225deg); }
+.home-icon { display: grid; grid-template-columns: repeat(2, 6px); gap: 4px; }
+.home-icon span { width: 6px; height: 6px; background: currentColor; }
